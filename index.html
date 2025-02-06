@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <script defer src="../JavaS/script.js"></script>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border: 1px solid black;
+            background-color: #fff;
+        }
+        .reset {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <table>
+        <tr>
+            <td><button id="a1" onclick="changeMark('a1')"></button></td>
+            <td><button id="b1" onclick="changeMark('b1')"></button></td>
+            <td><button id="c1" onclick="changeMark('c1')"></button></td>
+        </tr>
+        <tr>
+            <td><button id="a2" onclick="changeMark('a2')"></button></td>
+            <td><button id="b2" onclick="changeMark('b2')"></button></td>
+            <td><button id="c2" onclick="changeMark('c2')"></button></td>
+        </tr>
+        <tr>
+            <td><button id="a3" onclick="changeMark('a3')"></button></td>
+            <td><button id="b3" onclick="changeMark('b3')"></button></td>
+            <td><button id="c3" onclick="changeMark('c3')"></button></td>
+        </tr>
+    </table>
+    <button class="reset" onclick="resetGame()">Reset</button>
+</body>
+</html>
