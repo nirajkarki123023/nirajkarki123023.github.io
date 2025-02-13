@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Mean Calculator</title>
+    <script>
+        let dataset = [];
+        
+        function addValue() {
+            let input = document.getElementById("numberInput").value;
+            let num = parseFloat(input);
+            
+            if (isNaN(num)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+            
+            dataset.push(num);
+            updateDisplay();
+        }
+        
+        function removeValue() {
+            let input = document.getElementById("numberInput").value;
+            let num = parseFloat(input);
+            
+            if (isNaN(num)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+            
+            let index = dataset.indexOf(num);
+            if (index === -1) {
+                alert("Number not found in dataset.");
+                return;
+            }
+            
+            dataset.splice(index, 1);
+            updateDisplay();
+        }
+        
+        function computeMean() {
+            if (dataset.length === 0) {
+                document.getElementById("mean").innerText = "Mean: N/A (Dataset is empty)";
+                return;
+            }
+            
+            let sum = 0;
+            for (let i = 0; i < dataset.length; i++) {
+                sum += dataset[i];
+            }
+            let mean = sum / dataset.length;
+            
+            document.getElementById("mean").innerText = "Mean: " + mean.toFixed(2);
+        }
+        
+        function updateDisplay() {
+            document.getElementById("dataset").innerText = "Dataset: " + dataset.join(", ");
+            computeMean();
+        }
+    </script>
+</head>
+<body>
+    <h2>Arithmetic Mean Calculator</h2>
+    <input type="text" id="numberInput" placeholder="Enter a number">
+    <button onclick="addValue()">Add Value</button>
+    <button onclick="removeValue()">Remove Value</button>
+    <p id="dataset">Dataset: </p>
+    <p id="mean">Mean: N/A</p>
+</body>
+</html>
