@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Puzzle</title>
+    <style>
+        
+        #puzzle {
+            width: 500px;
+            height: 500px;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+   
+    <div id='puzzle'></div>
+    <script>
+        
+        const puzzle = document.getElementById('puzzle');
+
+        
+        puzzle.style.backgroundColor = '#7338A0'; 
+        puzzle.style.position = 'relative'; 
+
+       
+        const title = document.createElement('h1');
+        title.textContent = 'DOM Puzzle';
+        document.body.insertBefore(title, puzzle); 
+
+        
+        const description = document.createElement('p');
+        description.textContent = 'This is a puzzle created entirely with JavaScript.';
+        document.body.appendChild(description); 
+       
+        const buttonLabels = ['A', 'B', 'C', 'D'];
+        const buttonColors = ['#9455F4', '#4A2B74', '#594492', '#854DDC']; 
+
+        for (let i = 0; i < 4; i++) {
+            const button = document.createElement('button');
+            button.textContent = buttonLabels[i];
+            button.style.backgroundColor = buttonColors[i]; 
+            button.style.width = '125px'; 
+            button.style.height = '125px'; 
+            button.style.position = 'absolute';
+
+           
+            if (i < 2) {
+               
+                button.style.top = '0';
+                button.style.left = `${i * 125}px`;
+            } else {
+                
+                button.style.top = '125px';
+                button.style.left = `${(i - 2) * 125}px`;
+            }
+
+            puzzle.appendChild(button);
+        }
+
+    
+        for (let i = 0; i < 100; i++) {
+            const button = document.createElement('button');
+            button.style.width = '25px';
+            button.style.height = '24px';
+            button.style.backgroundColor = '#C39CFE'; 
+            button.style.position = 'absolute';
+            button.style.top = `${250 + Math.floor(i / 10) * 25}px`;
+            button.style.left = `${250 + (i % 10) * 25}px`;
+            puzzle.appendChild(button);
+        }
+
+       
+        puzzle.addEventListener('mouseenter', () => {
+            puzzle.style.border = '5px solid #FF9E00'; 
+        });
+
+        puzzle.addEventListener('mouseleave', () => {
+            puzzle.style.border = '5px solid black'; 
+        });
+
+       
+        const buttons = document.querySelectorAll('#puzzle button');
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+             
+                buttons.forEach((btn, idx) => {
+                    if (idx !== index && idx !== index - 1 && idx !== index + 1) {
+                        
+                        if (idx < 4) {
+                            
+                            btn.style.backgroundColor = buttonColors[idx];
+                        } else {
+                          
+                            btn.style.backgroundColor = '#C39CFE';
+                        }
+                    }
+                });
+
+                
+                button.style.backgroundColor = '#4A2574';
+
+            
+                if (index > 0) {
+                    buttons[index - 1].style.backgroundColor = '#FF9E00';
+                }
+
+                if (index < buttons.length - 1) {
+                    buttons[index + 1].style.backgroundColor = '#FF9E00';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
