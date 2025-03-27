@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My JavaScript Portfolio</title>
+    <link rel="stylesheet" href="Style/style.css">
+</head>
+<body>
+    <header>
+        <h1>My JavaScript Portfolio</h1>
+        <hr>
+    </header>
+    <main>
+        <section id="Introduction">
+            <h2>About Me: </h2>
+            <p>
+                Hello Guys, I am Niraj Jung Karki. I am an International Student from Nepal. I am currently majoring in Computer Science.
+                I came to the United States in April 20 to attend sumer semester. I took CS 1030 class and it was so intresting and relatively easy. 
+                There i learned HTML, JavaScript, CSS and python. I then took CS 1400 and there I learned python which was ok. I was not great at it but i 
+                knew some basic things that was taught in CS 1030 which made it relatively easy. The thing that I had most fun learning was HTML, CSS. Python was altight 
+                but JavaScript was the part that i was struggling.I knwe i was struggling at JavaScript during CS1030 final project which was to make a website about 
+                random topic of my choice. There i was struggling only on JavaScript part. Hopefully this class will help me learn it.
+                
+            </p>
+            <hr>
+            <img src="Image/me.jpg" alt="Picture of Me">
+            <hr>
+        </section>
+        
+        <section id="Projects">   
+            <h2>Upcoming JavaScript Projects</h2> 
+            <p>I am not currently sure and I am not good at JavaScript but am excited to learn and create many sick projects. Now i have learned about
+                adding buttons and using js to make it interactive. I had learned in CS 1030 mainly in the final project but some how i managed to make it run with the 
+                help of my friend and it was back in summer 2024. I fell like JS is still hard but slowly i'm getting the hang if it mainly because i have intrest in HTML, CSS but still 
+                JS is hard for me till now.<br> I will update it as i will lern more about it. </p>
+        </section>
+        <hr>
+
+        <section id="commentForm">
+            <h2>Leave a Comment</h2>
+            <form id="form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                <br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" required></textarea>
+                <br>
+                
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <span id="usernameError" class="error"></span>
+                <br>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="passwordError" class="error"></span>
+                <br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <hr>
+    </main>
+    
+    <script src="JS/button.js"></script>
+    <script>
+        document.getElementById('username').addEventListener('input', function() {
+            const username = this.value;
+            const usernameError = document.getElementById('usernameError');
+            const usernameRegex = /^[a-zA-Z0-9_]+$/;
+            
+            if (!usernameRegex.test(username)) {
+                usernameError.textContent = "Invalid username. Use only letters, numbers, and underscores.";
+            } else {
+                usernameError.textContent = "";
+            }
+        });
+        
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const passwordError = document.getElementById('passwordError');
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = "Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.";
+            } else {
+                passwordError.textContent = "";
+            }
+        });
+        
+        function sanitizeInput(input) {
+            return input.replace(/[<>&"']/g, function(match) {
+                return {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[match];
+            });
+        }
+
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = sanitizeInput(document.getElementById('name').value);
+            const phone = sanitizeInput(document.getElementById('phone').value);
+            const email = sanitizeInput(document.getElementById('email').value);
+            const comment = sanitizeInput(document.getElementById('comment').value);
+            const username = sanitizeInput(document.getElementById('username').value);
+            const password = sanitizeInput(document.getElementById('password').value);
+            
+            const formData = {
+                name,
+                phone,
+                email,
+                comment,
+                username,
+                password
+            };
+            
+            console.log("Form Data Submitted:", formData);
+            alert("Form submitted successfully!");
+        });
+    </script>
+    
+    <footer>
+        <p>&copy; 2025 Niraj Jung Karki. All rights reserved.</p>
+    </footer>
+</body>
+</html>
